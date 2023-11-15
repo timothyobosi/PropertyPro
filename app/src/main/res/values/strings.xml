@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PropertyPro</string>
+    <string name="sign_in_with_phone">Sign in with phone</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="full_name">Full Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+</resources>
