@@ -49,6 +49,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.google.firebase:firebase-auth:22.2.0")
+
+    //implementation of dynamic links
+    implementation("com.google.firebase:firebase-dynamic-links")
+    implementation("com.google.firebase:firebase-analytics")
     //RxJava
     implementation ("io.reactivex.rxjava3:rxandroid:3.0.2")
     //firebaseUI
