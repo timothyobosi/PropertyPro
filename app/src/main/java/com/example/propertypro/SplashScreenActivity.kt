@@ -92,6 +92,8 @@ class SplashScreenActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, LOGIN_REQUEST_CODE)
 
 
+
+
     }
 
 

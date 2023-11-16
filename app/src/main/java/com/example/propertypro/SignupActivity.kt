@@ -17,6 +17,8 @@ class SignupActivity : AppCompatActivity() , View.OnClickListener,View.OnFocusCh
         mBinding = ActivitySignupBinding.inflate(LayoutInflater.from(this))
         setContentView(mBinding.root)
 
+
+
         //Listener to every input field
         mBinding.fullNameEt.onFocusChangeListener = this
         mBinding.emailEt.onFocusChangeListener = this
