@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "667829019199-kaq294rho969f3t2bvgilejnej6qh5t7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.propertypro",
+            "certificate_hash": "d2105038f7b7a6674ae9b070a56fe7943543a4a8"
+          }
+        },
+        {
           "client_id": "667829019199-b147q0m954nmtm4ns75g9d1ulti71t7p.apps.googleusercontent.com",
           "client_type": 3
         }

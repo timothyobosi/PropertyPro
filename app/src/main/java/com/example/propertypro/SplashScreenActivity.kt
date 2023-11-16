@@ -78,8 +78,8 @@ class SplashScreenActivity : AppCompatActivity() {
             .setGoogleButtonId(R.id.btn_google_sign_in)
             .build()
 
-        binding = SplashScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+
+
 
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
