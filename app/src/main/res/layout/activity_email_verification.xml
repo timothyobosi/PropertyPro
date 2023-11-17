@@ -4,6 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/verify_layou"
-    tools:context="">
+    >
 
 </androidx.constraintlayout.widget.ConstraintLayout>
