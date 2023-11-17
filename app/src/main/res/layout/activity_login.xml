@@ -3,40 +3,38 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/sign_up"
     android:layout_marginTop="0dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignupActivity">
 
 
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="693dp"
         android:layout_margin="12dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="0dp"
         app:cardElevation="8dp"
         app:strokeColor="@color/black"
-        app:strokeWidth="0.5dp"
-        app:cardCornerRadius="0dp">
+        app:strokeWidth="0.5dp">
 
         <LinearLayout
-            android:layout_marginTop="150dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign in"
                 android:gravity="center"
-                android:textStyle="italic"
-                android:textSize="18sp"
-                android:textColor="@color/light_blue_900"
                 android:paddingHorizontal="8dp"
-                android:paddingVertical="12dp"/>
-
+                android:paddingVertical="12dp"
+                android:text="Sign in"
+                android:textColor="@color/light_blue_900"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -45,20 +43,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:textColorHint="@color/light_blue_900"
-                android:textColorHighlight="@color/light_blue_900"
                 android:textColor="@color/light_blue_900"
+                android:textColorHighlight="@color/light_blue_900"
+                android:textColorHint="@color/light_blue_900"
                 app:startIconDrawable="@drawable/email_ic">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:drawableTintMode="screen"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:paddingHorizontal="8dp"
                     android:paddingVertical="12dp"
-                    android:hint="@string/email"
-                    android:drawableTintMode="screen"
-                    android:inputType="textEmailAddress"/>
+                    android:textColor="@color/light_blue_900"
+                    android:textColorHint="@color/light_blue_900"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -66,40 +68,55 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColorHint="@color/light_blue_900"
-                android:textColorHighlight="@color/light_blue_900"
                 android:textColor="@color/light_blue_900"
-                app:endIconMode="password_toggle"
+                android:textColorHighlight="@color/light_blue_900"
+                android:textColorHint="@color/light_blue_900"
                 app:counterEnabled="true"
                 app:counterMaxLength="16"
-                app:startIconDrawable="@drawable/pass_icon"
+                app:endIconDrawable="@drawable/hide_icon"
+                app:endIconMode="password_toggle"
                 app:passwordToggleEnabled="true"
-                app:endIconDrawable="@drawable/hide_icon">
+                app:startIconDrawable="@drawable/pass_icon">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:paddingHorizontal="8dp"
                     android:maxLength="16"
+                    android:paddingHorizontal="8dp"
                     android:paddingVertical="12dp"
-                    android:layout_marginTop="12dp"/>
+                    android:textColorHint="@color/light_blue_900"
+                    android:textStyle="bold" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signButton"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/sign_up"
-                style="@style/Widget.MaterialComponents.Button"/>
+                android:text="@string/sign_in" />
 
+            <TextView
+                android:id="@+id/redirectBtnText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="12dp"
+                android:text="Do not have an account? Sign Up"
+                android:textColor="@color/light_blue_900"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:onClick="onSignUpClick" />
 
 
         </LinearLayout>
@@ -107,7 +124,7 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="148dp"
             app:srcCompat="@drawable/realest" />
 
     </com.google.android.material.card.MaterialCardView>
