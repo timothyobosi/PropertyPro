@@ -62,7 +62,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     // User has not verified their email
                     Toast.makeText(
                         this@SplashScreenActivity,
-                        "Please verify your email before signing in.",
+                        "Welcome, Thank you for trusting us.",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
