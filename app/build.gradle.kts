@@ -113,4 +113,11 @@ dependencies {
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    implementation ("com.google.android.material:material:1.5.0")
+
+    implementation ("com.google.android.gms:play-services-auth:17.0.0")
+
+    implementation("com.google.firebase:firebase-firestore:24.9.1")
+
 }

@@ -10,6 +10,8 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="phone_number">Phone Number</string>
     <string name="sign_in">Sign in</string>
     <string name="signText">Sign in email</string>
+    <string name="Email_hint">Email</string>
 </resources>

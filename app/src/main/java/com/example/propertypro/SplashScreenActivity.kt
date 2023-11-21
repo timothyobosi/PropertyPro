@@ -14,6 +14,9 @@ import java.util.Arrays
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseUser
 import java.util.concurrent.TimeUnit
+import android.view.View
+
+
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -78,6 +81,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun showLoginLayout() {
         val authMethodPickerLayout = AuthMethodPickerLayout.Builder(R.layout.layout_sign_in)
+
             .setPhoneButtonId(R.id.btn_phone_sign_in)
             .setEmailButtonId(R.id.btn_email_sign_in)
             .build()
@@ -100,16 +104,32 @@ class SplashScreenActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
                 if (user != null) {
-                    val userEmail = user.email
-                    // Now you have the email address entered by the user
                     if (!user.isEmailVerified) {
                         sendEmailVerification(user)
                     }
+                    // Redirect to the layout where the user inputs the verification code
+                    // You can call a new function to handle this, e.g., showVerificationCodeLayout()
+                    showVerificationCodeLayout(user)
                 }
             } else {
                 Toast.makeText(this@SplashScreenActivity, "" + response?.error?.message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun showVerificationCodeLayout(user: FirebaseUser) {
+        // Start a new activity for entering verification code
+        val verificationIntent = Intent(this@SplashScreenActivity, VerificationCodeActivity::class.java)
+        // Pass user email to the VerificationCodeActivity
+        verificationIntent.putExtra("EMAIL", user.email)
+        startActivity(verificationIntent)
+        finish() // Optional: Close the login activity
+    }
+
+    fun redirectToCategorySelection(view: View) {
+        val intent = Intent(this@SplashScreenActivity, CategorySelectionActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun sendEmailVerification(user: FirebaseUser) {
@@ -130,4 +150,6 @@ class SplashScreenActivity : AppCompatActivity() {
                 }
             }
     }
+
+
 }

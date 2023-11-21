@@ -43,18 +43,19 @@
             android:text="SignIn with Email"
             android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/tvCreateAccount"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnRedirectSign"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Don't have an account? Create Account"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/btn_email_sign_in"
-            android:layout_marginTop="10dp"
-            android:textSize="16dp"
-            android:textColor="@color/colorAccent"
-            android:clickable="true"
-            android:focusable="true"/>
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@android:color/black"
+            android:drawableLeft="@drawable/base_account_"
+            android:drawableTint="@color/white"
+            android:padding="16dp"
+            android:text="Log in"
+            android:textColor="@android:color/white"
+            android:onClick="redirectToCategorySelection"/>
+
 
     </LinearLayout>
 

@@ -65,6 +65,13 @@
         <!-- Add other attributes as needed -->
     </style>
 
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@android:color/white</item>
+        <item name="boxStrokeWidth">3dp</item> <!-- Adjust the thickness as needed -->
+        <item name="android:textColorHint">@android:color/white</item> <!-- Set the hint (label) text color -->
+        <item name="android:textColor">@android:color/white</item> <!-- Set the input text color -->
+    </style>
+
 
 
 </resources>

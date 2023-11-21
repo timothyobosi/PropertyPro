@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PropertyPro"
         tools:targetApi="34">
+
+        <!-- Add this line to specify the custom Application class -->
+        <activity
+            android:name=".MyApplication"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <!-- ... other configuration ... -->
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -21,30 +32,48 @@
             android:exported="false"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.PropertyPro.Fullscreen" />
-        <activity
-            android:name=".SignupActivity"
-            android:exported="false" />
+
+        <!-- Add other activities as needed -->
+
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".BuyerRegistrationActivity" />
         <activity android:name=".SellerRegistrationActivity" />
-
         <activity android:name=".SellerLoginActivity" />
         <activity android:name=".BuyerLoginActivity">
             <!-- Intent filters and other activity configurations go here -->
         </activity>
 
+        <activity
+            android:name=".VerificationCodeActivity"
+            android:label="Verification Code Activity">
+        </activity>
+
+        <activity
+            android:name=".CategorySelectionActivity"
+            android:label="Category Selection"
+            android:exported="true"> <!-- Add this line -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity android:name=".HomeActivity"/>
+
+        <!-- ... other activities ... -->
+
+
+
     </application>
 
 </manifest>

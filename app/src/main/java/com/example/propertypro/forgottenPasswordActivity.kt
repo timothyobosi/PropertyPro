@@ -1,4 +1,6 @@
 package com.example.propertypro
 
-class forgottenPasswordActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class forgottenPasswordActivity : AppCompatActivity() {
 }
