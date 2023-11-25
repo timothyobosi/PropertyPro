@@ -21,7 +21,6 @@ class LoginActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-    // ...
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,12 +59,12 @@ class LoginActivity : AppCompatActivity() {
         createAccountText.text = spannableString
 
         // Set OnClickListener for the TextView (optional, since the ClickableSpan handles the click)
-        // createAccountText.setOnClickListener {
-        //    // Handle the click event here
-        //    // For example, navigate to the registration screen
-        //    val intent = Intent(this, SignupActivity::class.java)
-        //    startActivity(intent)
-        // }
+        createAccountText.setOnClickListener {
+            // Handle the click event here (though it's already handled by ClickableSpan)
+            val intent = Intent(this, CategorySelectionActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         binding.loginButton.setOnClickListener {
             val loginEmail = binding.emailEditText.text.toString()
@@ -80,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
                             if (user != null && user.isEmailVerified) {
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
+                                finish()
                             } else {
                                 showToast("Email not verified. Please verify your email.")
                             }
@@ -92,7 +92,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-// ...
-
 }
