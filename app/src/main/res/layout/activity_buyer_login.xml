@@ -1,68 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuyerLoginActivity">
+    android:orientation="vertical"
+    android:background="@drawable/log_in_layout"
+    android:padding="16dp">
 
-    <EditText
-        android:id="@+id/emailEditText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailInputLayout"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
+        android:hint="@string/email"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:hint="Email" />
+        app:boxStrokeColor="@color/colorAccent"
+        app:hintEnabled="true">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/passwordEditText"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInputLayout"
+        style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/emailEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:inputType="textPassword"
-        android:hint="Password" />
+        android:layout_marginTop="8dp"
+        android:hint="@string/password"
+        app:boxStrokeColor="@color/colorAccent"
+        app:hintEnabled="true">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/passwordEditText"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
         android:text="Login" />
 
     <TextView
-        android:id="@+id/signUpText"
-        android:layout_width="wrap_content"
-        android:layout_height="54dp"
-        android:layout_below="@+id/loginButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textSize="18dp"
-        android:clickable="true"
-        android:onClick="onSignUpClick"
-        android:text="Do not have account? Sign up" />
-    
-    <TextView
-        android:id="@+id/forgotPasswordText"
+        android:id="@+id/createAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/signUpText"
-        android:layout_marginTop="2dp"
-        android:textSize="18dp"
-        android:layout_centerHorizontal="true"
-        android:text="Forgotten password?"
-        android:textColor="@color/light_blue_A400"
-        android:clickable="true"
-        android:onClick="onForgotPasswordClick"/>
-
-
-
-    <!-- Other layout components -->
-
-</RelativeLayout>
+        android:layout_marginTop="29dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="Don't have an account? Create"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+</LinearLayout>
