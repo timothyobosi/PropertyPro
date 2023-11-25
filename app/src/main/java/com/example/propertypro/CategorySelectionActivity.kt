@@ -23,7 +23,7 @@ class CategorySelectionActivity : AppCompatActivity() {
         }
 
         sellerButton.setOnClickListener {
-            navigateToRegistration(SellerRegistrationActivity::class.java)
+            navigateToRegistration(SellerRegistration::class.java)
         }
     }
 

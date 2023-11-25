@@ -15,9 +15,11 @@
         android:theme="@style/Theme.PropertyPro"
         tools:targetApi="34">
         <activity
-            android:name=".BuyerLogin"
+            android:name=".SellerRegistration"
             android:exported="false" />
-        <!-- Add this line to specify the custom Application class -->
+        <activity
+            android:name=".BuyerLogin"
+            android:exported="false" /> <!-- Add this line to specify the custom Application class -->
         <activity
             android:name=".MyApplication"
             android:icon="@mipmap/ic_launcher"
@@ -46,7 +48,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".BuyerRegistrationActivity" />
-        <activity android:name=".SellerRegistrationActivity" />
         <activity android:name=".SellerLoginActivity" />
         <activity android:name=".BuyerLoginActivity">
 
@@ -54,7 +55,7 @@
         </activity>
         <activity
             android:name=".VerificationCodeActivity"
-            android:label="Verification Code Activity"></activity>
+            android:label="Verification Code Activity" />
         <activity
             android:name=".CategorySelectionActivity"
             android:exported="true"
