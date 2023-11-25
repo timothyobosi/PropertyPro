@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/splash_screen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SplashScreenActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,24 +39,22 @@
             android:backgroundTint="@android:color/black"
             android:drawableLeft="@drawable/email_ic"
             android:padding="16dp"
-            android:text="SignIn with Email"
+            android:text="Sign up with Email"
             android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btnRedirectSign"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@android:color/black"
-            android:drawableLeft="@drawable/base_account_"
-            android:drawableTint="@color/white"
-            android:padding="16dp"
-            android:text="Log in"
-            android:textColor="@android:color/white"
-            android:onClick="redirectToCategorySelection"/>
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textRedirectToCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Click here to go to Category Selection"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:onClick="redirectToCategorySelection"/>
 
 
 

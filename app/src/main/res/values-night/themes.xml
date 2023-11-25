@@ -3,6 +3,11 @@
     <style name="Base.Theme.PropertyPro" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:statusBarColor" tools:targetApi="1">?attr/colorPrimaryVariant</item>
+    </style>
+
+    <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateTint">@color/light_blue_A400</item>
     </style>
 
     <style name="ThemeOverlay.PropertyPro.FullscreenContainer" parent="">

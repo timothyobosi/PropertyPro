@@ -23,4 +23,11 @@
         <item name="android:windowEnterAnimation">@anim/slide_in</item>
         <item name="android:windowExitAnimation">@anim/slide_out</item>
     </style>
+
+    <style name="ProgressBarStyle" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:indeterminateTint">?attr/colorPrimaryVariant</item>
+    </style>
+
+
+
 </resources>
