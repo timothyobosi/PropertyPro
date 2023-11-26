@@ -12,11 +12,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.propertypro.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class SellerLoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var sellerInfoRef: DatabaseReference
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -71,6 +78,8 @@ class SellerLoginActivity : AppCompatActivity() {
             val loginEmail = binding.emailEditText.text.toString()
             val loginPassword = binding.passwordEditText.text.toString()
 
+
+
             if (loginEmail.isNotEmpty() && loginPassword.isNotEmpty()) {
                 firebaseAuth.signInWithEmailAndPassword(loginEmail, loginPassword)
                     .addOnCompleteListener { task ->
@@ -93,4 +102,6 @@ class SellerLoginActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }

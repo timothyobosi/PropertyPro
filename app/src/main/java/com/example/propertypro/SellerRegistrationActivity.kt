@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.database.*
 
 class SellerRegistrationActivity : AppCompatActivity() {
 
@@ -32,10 +33,16 @@ class SellerRegistrationActivity : AppCompatActivity() {
     private lateinit var loginLinkTextView: TextView
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: FirebaseDatabase
+    private lateinit var sellerInfoRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seller_registration)
+
+        // Initialize Firebase
+        database = FirebaseDatabase.getInstance()
+        sellerInfoRef = database.getReference(Common.SELLER_INFO_REFERENCE)
 
         // Initialize Views
         phoneNumberLayout = findViewById(R.id.phoneNumberInputLayout)
@@ -98,6 +105,7 @@ class SellerRegistrationActivity : AppCompatActivity() {
             return false
         }
 
+
         // You can add more validation rules as needed
 
         return true
@@ -130,14 +138,30 @@ class SellerRegistrationActivity : AppCompatActivity() {
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     showToast("Verification email sent to ${user.email}")
-                    // Navigate to SellerLoginActivity
-                    val intent = Intent(this, SellerLoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    // Check user in Firebase after sending verification email
+                    checkUserFromFirebase(user.uid)
                 } else {
                     showToast("Failed to send verification email.")
                 }
             }
+    }
+
+    private fun checkUserFromFirebase(userId: String) {
+        sellerInfoRef
+            .child(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    Toast.makeText(this@SellerRegistrationActivity, p0.message, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        showToast("User already registered!")
+                    } else {
+                        showToast("User not registered. Please complete the registration process.")
+                    }
+                }
+            })
     }
 
     private fun showToast(message: String) {
