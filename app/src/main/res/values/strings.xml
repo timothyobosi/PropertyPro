@@ -16,4 +16,8 @@
     <string name="Email_hint">Email</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
+    <string name="id_number_place">Your ID Number</string>
+    <string name="Full_Name">Your Full Name</string>
+    <string name="title_activity_maps">MapsActivity</string>
+
 </resources>

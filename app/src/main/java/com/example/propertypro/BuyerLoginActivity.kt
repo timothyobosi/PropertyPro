@@ -24,13 +24,14 @@ class BuyerLoginActivity : AppCompatActivity() {
             loginUser()
         }
 
-        binding.signUpText.setOnClickListener {
+        binding.createAccountText.setOnClickListener {
             onSignUpClick(it)
         }
 
         binding.forgotPasswordText.setOnClickListener {
             onForgotPasswordClick(it)
         }
+
     }
 
     private fun loginUser() {
@@ -58,10 +59,11 @@ class BuyerLoginActivity : AppCompatActivity() {
     }
 
     fun onSignUpClick(view: View) {
-        // Handle click for "Do not have an account? Sign up"
-        // For example, you can navigate to the sign-up activity
-        // Replace the following line with your desired action
-        Toast.makeText(this, "Sign Up Clicked", Toast.LENGTH_SHORT).show()
+        // Replace SellerRegistration::class.java with the actual name of your SellerRegistration class
+        val intent = Intent(this, BuyerRegistrationActivity::class.java)
+        startActivity(intent)
+
+        finish()
     }
 
     fun onForgotPasswordClick(view: View) {

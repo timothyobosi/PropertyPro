@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/category_layout"
     android:orientation="vertical"
-    android:padding="40dp">
+    android:padding="40dp"
+    tools:context=".SellerRegistration">
 
 
 
