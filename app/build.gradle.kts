@@ -126,5 +126,10 @@ dependencies {
 
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
 
+    implementation("com.google.firebase:firebase-appcheck")
+
+    implementation("com.google.firebase:firebase-appcheck:17.1.1")
+    
+
 
 }

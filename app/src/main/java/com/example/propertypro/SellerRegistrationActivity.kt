@@ -2,6 +2,7 @@ package com.example.propertypro
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
 class SellerRegistrationActivity : AppCompatActivity() {
@@ -69,6 +71,20 @@ class SellerRegistrationActivity : AppCompatActivity() {
 
         // Set click listener for Login Link TextView
         loginLinkTextView.setOnClickListener { navigateToSignIn() }
+
+        // Add ValueEventListener to listen for changes in the database
+        sellerInfoRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Check if data is updated
+                // Log or print dataSnapshot to see the data
+                Log.d("Firebase", "Data updated: $dataSnapshot")
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle errors
+                Log.e("Firebase", "Error: ${databaseError.message}")
+            }
+        })
     }
 
     private fun onRegisterButtonClick() {
@@ -81,7 +97,7 @@ class SellerRegistrationActivity : AppCompatActivity() {
 
         if (validateInputFields(phoneNumber, idNumber, name, email, password, confirmPassword)) {
             // Perform the registration process and send verification link
-            registerUser(email, password)
+            registerUser(email, password, phoneNumber, idNumber, name)
         }
     }
 
@@ -105,29 +121,22 @@ class SellerRegistrationActivity : AppCompatActivity() {
             return false
         }
 
-
         // You can add more validation rules as needed
 
         return true
     }
 
-    private fun registerUser(email: String, password: String) {
+    private fun registerUser(email: String, password: String, phoneNumber: String, idNumber: String, name: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Send verification email
                     sendVerificationEmail()
+                    // Save user information to Firebase Realtime Database
+                    saveUserInfoToFirebase(email, phoneNumber, idNumber, name)
                 } else {
                     // Handle registration failure
-                    try {
-                        throw task.exception!!
-                    } catch (e: FirebaseAuthUserCollisionException) {
-                        showToast("Email is already registered.")
-                    } catch (e: FirebaseAuthInvalidCredentialsException) {
-                        showToast("Invalid email or password format.")
-                    } catch (e: Exception) {
-                        showToast("Registration failed. Please try again.")
-                    }
+                    handleRegistrationFailure(task.exception)
                 }
             }
     }
@@ -138,30 +147,43 @@ class SellerRegistrationActivity : AppCompatActivity() {
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     showToast("Verification email sent to ${user.email}")
-                    // Check user in Firebase after sending verification email
-                    checkUserFromFirebase(user.uid)
                 } else {
                     showToast("Failed to send verification email.")
                 }
             }
     }
 
-    private fun checkUserFromFirebase(userId: String) {
-        sellerInfoRef
-            .child(userId)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    Toast.makeText(this@SellerRegistrationActivity, p0.message, Toast.LENGTH_SHORT).show()
-                }
+    private fun saveUserInfoToFirebase(email: String, phoneNumber: String, idNumber: String, name: String) {
+        val user = auth.currentUser
+        user?.let {
+            // Hash the password (you can use a secure hashing algorithm)
+            val hashedPassword = hashPassword(passwordEditText.text.toString())
 
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        showToast("User already registered!")
-                    } else {
-                        showToast("User not registered. Please complete the registration process.")
-                    }
-                }
-            })
+            // Create a SellerInfoModel object
+            val sellerInfo = SellerInfoModel()
+            sellerInfo.email = email
+            sellerInfo.phoneNumber = phoneNumber
+            sellerInfo.idNumber = idNumber
+            sellerInfo.fullName = name
+            sellerInfo.password = hashedPassword
+
+            // Save user information to Firebase Realtime Database
+            sellerInfoRef.child("seller_info").child(it.uid).setValue(sellerInfo)
+        }
+    }
+
+    private fun handleRegistrationFailure(exception: Exception?) {
+        when (exception) {
+            is FirebaseAuthUserCollisionException -> showToast("Email is already registered.")
+            is FirebaseAuthInvalidCredentialsException -> showToast("Invalid email or password format.")
+            else -> showToast("Registration failed. Please try again.")
+        }
+    }
+
+    private fun hashPassword(password: String): String {
+        // Implement password hashing algorithm (e.g., use a secure hashing library)
+        // For demonstration purposes, you can use a simple hash function
+        return password.hashCode().toString()
     }
 
     private fun showToast(message: String) {
