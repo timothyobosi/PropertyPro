@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/log_in_layout"
-    android:padding="16dp">
+    android:background="@drawable/seller_login_screen"
+    android:padding="16dp"
+    tools:context=".SellerLoginActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailInputLayout"
@@ -15,6 +16,7 @@
         android:layout_width="match_parent"
         android:hint="@string/email"
         android:layout_height="wrap_content"
+        android:textColorHint="@color/light_blue_900"
         android:layout_marginTop="200dp"
         app:boxStrokeColor="@color/colorAccent"
         app:hintEnabled="true">
@@ -23,6 +25,7 @@
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -30,16 +33,18 @@
         android:id="@+id/passwordInputLayout"
         style="@style/MyTextInputLayout"
         android:layout_width="match_parent"
+        android:textColorHint="@color/light_blue_900"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="@string/password"
-        app:boxStrokeColor="@color/colorAccent"
+        app:boxStrokeColor="@color/light_blue_900"
         app:hintEnabled="true"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,7 +65,7 @@
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:text="Don't have an account? Create"
-        android:textColor="@color/white"
+        android:textColor="@color/light_blue_900"
         android:textStyle="bold"
         android:textSize="16sp"
         android:onClick="navigateToSignUp"/>
@@ -73,7 +78,7 @@
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:text="Forgot Password"
-        android:textColor="@color/white"
+        android:textColor="@color/light_blue_900"
         android:textStyle="bold"
         android:textSize="16sp"
         android:onClick="navigateToReset"/>

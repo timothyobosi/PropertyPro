@@ -37,9 +37,9 @@
         <activity
             android:name=".SellerHomeActivity"
             android:exported="false" />
-        <activity
-            android:name=".SellerRegistration"
-            android:exported="false" />
+        <activity android:name=".SellerRegistrationActivity">
+            <!-- Intent filters and other activity settings go here -->
+        </activity>
         <activity
             android:name=".BuyerLogin"
             android:exported="false" /> <!-- Add this line to specify the custom Application class -->
