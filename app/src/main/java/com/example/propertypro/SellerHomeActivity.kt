@@ -2,13 +2,15 @@ package com.example.propertypro
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.propertypro.databinding.ActivitySellerHomeBinding
-import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -56,8 +58,19 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 // You can replace this with the action you want to perform
             }
             R.id.nav_listings -> {
-                // Call getProperties() from the repository
-                propertyRepository.getProperties()
+                // Fetch properties from Firestore
+                propertyRepository.getProperties().addOnSuccessListener { querySnapshot ->
+                    val properties = querySnapshot.toObjects(Property::class.java)
+
+                    // Set up RecyclerView
+                    val recyclerView: RecyclerView = findViewById(R.id.recyclerViewProperties)
+                    val adapter = PropertyAdapter(properties)
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = LinearLayoutManager(this)
+                }.addOnFailureListener { exception ->
+                    // Handle failure
+                    Log.e(TAG, "Error getting properties", exception)
+                }
             }
             R.id.nav_settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
@@ -81,13 +94,8 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             super.onBackPressed()
         }
     }
-}
 
-class PropertyRepository {
-
-    private val db = FirebaseFirestore.getInstance()
-
-    fun getProperties(): Task<QuerySnapshot> {
-        return db.collection("properties").get()
+    companion object {
+        private const val TAG = "SellerHomeActivity"
     }
 }
