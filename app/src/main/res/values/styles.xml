@@ -72,6 +72,31 @@
         <item name="android:textColor">@android:color/white</item> <!-- Set the input text color -->
     </style>
 
+    <style name="PopupMenu" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize attributes if needed -->
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+        <item name="android:popupWindowStyle">@style/PopupWindow</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle</item>
+        <!-- ... other style attributes ... -->
 
+    </style>
+
+    <style name="PopupWindow" parent="Widget.AppCompat.PopupWindow">
+        <!-- Customize attributes if needed -->
+    </style>
+
+    <style name="DropDownListView" parent="Widget.AppCompat.ListView.DropDown">
+        <!-- Customize attributes if needed -->
+    </style>
+
+    <style name="ActionBarTabStyle" parent="Widget.AppCompat.ActionBar.TabView">
+        <!-- Customize attributes if needed -->
+    </style>
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"
+
+        />
 
 </resources>

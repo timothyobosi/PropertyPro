@@ -20,4 +20,9 @@
     <string name="Full_Name">Your Full Name</string>
     <string name="title_activity_maps">MapsActivity</string>
 
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+    <string name="profile_picture">profile_picture</string>
+
 </resources>

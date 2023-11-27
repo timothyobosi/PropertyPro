@@ -1,0 +1,26 @@
+<!-- menu_seller_drawer.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <!-- Seller Home -->
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home" />
+
+        <!-- Seller Listings -->
+        <item
+            android:id="@+id/nav_listings"
+            android:title="My Listings" />
+
+        <!-- Seller Settings -->
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings" />
+
+        <!-- Seller Logout -->
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Logout" />
+    </group>
+
+</menu>

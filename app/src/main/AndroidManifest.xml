@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PropertyPro"
         tools:targetApi="34">
-
+        <activity
+            android:name=".ListingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -38,6 +43,7 @@
             android:name=".SellerHomeActivity"
             android:exported="false" />
         <activity android:name=".SellerRegistrationActivity">
+
             <!-- Intent filters and other activity settings go here -->
         </activity>
         <activity
