@@ -1,21 +1,24 @@
 package com.example.propertypro
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.propertypro.databinding.ActivitySellerHomeBinding
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import com.example.propertypro.databinding.ActivitySellerHomeBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.material.navigation.NavigationView
-import com.example.propertypro.R
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 
 class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivitySellerHomeBinding
-    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
     private lateinit var navigationView: NavigationView
+    private val propertyRepository = PropertyRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,6 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         navigationView.setNavigationItemSelectedListener(this)
     }
 
-    // Handle navigation item clicks
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
@@ -54,10 +56,11 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 // You can replace this with the action you want to perform
             }
             R.id.nav_listings -> {
-                // Handle Listings click
+                // Call getProperties() from the repository
+                propertyRepository.getProperties()
             }
             R.id.nav_settings -> {
-                // Handle Settings click
+                startActivity(Intent(this, SettingsActivity::class.java))
             }
             R.id.nav_logout -> {
                 // Handle Logout click
@@ -77,5 +80,14 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         } else {
             super.onBackPressed()
         }
+    }
+}
+
+class PropertyRepository {
+
+    private val db = FirebaseFirestore.getInstance()
+
+    fun getProperties(): Task<QuerySnapshot> {
+        return db.collection("properties").get()
     }
 }
