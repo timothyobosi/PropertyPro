@@ -1,0 +1,11 @@
+<!-- res/drawable/error_image.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24.0"
+    android:viewportHeight="24.0">
+
+    <path
+        android:fillColor="#FF0000"
+        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2zm0,18c-4.41,0 -8,-3.59 -8,-8s3.59,-8 8,-8 8,3.59 8,8 -3.59,8 -8,8zm-0.71,-13.71c-0.39,-0.39 -1.02,-0.39 -1.41,0L8.21,10.79C7.51,11.49 6.28,11.49 5.57,10.79C4.87,10.08 4.87,8.84 5.57,8.13L10.44,3.36C11.14,2.66 12.37,2.66 13.07,3.36L18.93,9.22C19.63,9.92 19.63,11.16 18.93,11.87C18.22,12.57 16.98,12.57 16.27,11.87L12.71,8.29L12,9L13.5,9L18,14.5L17.29,15.21L12.71,10.63Z"/>
+</vector>
