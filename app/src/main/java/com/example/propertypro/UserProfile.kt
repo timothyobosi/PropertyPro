@@ -1,7 +1,7 @@
 package com.example.propertypro
 
 data class UserProfile(
-    val displayName: String,
+    var displayName: String,
     val email: String,
     // Add other fields as needed
 )

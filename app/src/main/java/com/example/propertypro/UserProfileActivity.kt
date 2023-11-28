@@ -2,14 +2,15 @@ package com.example.propertypro
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 class UserProfileActivity : AppCompatActivity() {
 
@@ -18,6 +19,11 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var buttonUpdateProfile: Button
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var userRef: DocumentReference
+    private val db = FirebaseFirestore.getInstance()
+
+    private var currentUser: FirebaseUser? = null
+    private var userProfile: UserProfile? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,32 +36,51 @@ class UserProfileActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        // Check if user is signed in (not null), and update UI accordingly
-        val currentUser: FirebaseUser? = auth.currentUser
-        updateUI(currentUser)
+        // Check if the activity was launched from nav_profile
+        val isFromProfile = intent.getBooleanExtra(KEY_FROM_PROFILE, false)
+        if (isFromProfile) {
+            // Update UI for the profile view
+            userRef = db.collection("users").document(auth.currentUser!!.uid)
+            updateUIForProfile()
+        } else {
+            // Check if user is signed in (not null), and update UI accordingly
+            currentUser = auth.currentUser
+            userRef = db.collection("users").document(currentUser!!.uid)
+            updateUI(userProfile)
+        }
 
         // Set up the "Update Profile" button click listener
         buttonUpdateProfile.setOnClickListener {
-            // Call a function to update the user's display name or other details
-            // You can implement the necessary logic here
-            // For example, show a dialog for the user to input new details
-            // and then update the user's profile using FirebaseAuth API
-
             if (currentUser != null) {
-                updateDisplayName(currentUser)
-                saveUserProfileToDatabase(currentUser)
+                updateDisplayName(currentUser!!)
+                saveUserProfileToDatabase()
             }
         }
     }
 
-    // Add this function to update UI based on user authentication status
-    private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            val displayName = currentUser.displayName
-            val email = currentUser.email
+    private fun updateUIForProfile() {
+        // Customize the UI for the profile view
+        // For example, hide the "Update Profile" button or show additional information
+        buttonUpdateProfile.visibility = View.GONE
 
-            textViewDisplayName.text = displayName
-            textViewEmail.text = email
+        // Fetch user data from Firestore and update UI
+        userRef.get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    userProfile = documentSnapshot.toObject(UserProfile::class.java)
+                    updateUI(userProfile)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error fetching user profile from Firestore", e)
+            }
+    }
+
+    private fun updateUI(userProfile: UserProfile?) {
+        // Update UI based on the UserProfile model
+        if (userProfile != null) {
+            textViewDisplayName.text = userProfile.displayName
+            textViewEmail.text = userProfile.email
             // Update other TextViews or UI components with additional user details
         }
     }
@@ -73,6 +98,7 @@ class UserProfileActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Update successful
                     Log.d(TAG, "User profile updated.")
+                    userProfile?.displayName = newDisplayName
                     // Update UI or perform other actions
                 } else {
                     // If update fails, log the error
@@ -81,29 +107,28 @@ class UserProfileActivity : AppCompatActivity() {
             }
     }
 
-    private fun saveUserProfileToDatabase(currentUser: FirebaseUser) {
-        // Save the user profile to the database
-        val userId = currentUser.uid
-        val databaseReference: DatabaseReference =
-            FirebaseDatabase.getInstance().getReference("users").child(userId)
+    private fun saveUserProfileToDatabase() {
+        // Save the user profile to Firestore
+        val updatedUserProfile = UserProfile(
+            userProfile?.displayName ?: "",
+            userProfile?.email ?: "",
+            /* other fields */
+        )
 
-        // Assume you have a UserProfile model class
-        val userProfile = UserProfile("New Display Name", currentUser.email ?: "", /* other fields */)
-
-        databaseReference.setValue(userProfile)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Database write successful
-                    Log.d(TAG, "User profile saved to database.")
-                    // Update UI or perform other actions
-                } else {
-                    // If write fails, log the error
-                    Log.e(TAG, "Error saving user profile to database", task.exception)
-                }
+        userRef.set(updatedUserProfile)
+            .addOnSuccessListener {
+                // Database write successful
+                Log.d(TAG, "User profile saved to Firestore.")
+                // Update UI or perform other actions
+            }
+            .addOnFailureListener { e ->
+                // If write fails, log the error
+                Log.e(TAG, "Error saving user profile to Firestore", e)
             }
     }
 
     companion object {
         private const val TAG = "UserProfileActivity"
+        private const val KEY_FROM_PROFILE = "from_profile"
     }
 }

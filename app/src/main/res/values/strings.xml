@@ -24,5 +24,10 @@
     <string name="navigation_drawer_close">Close</string>
 
     <string name="profile_picture">profile_picture</string>
+    <string name="my_listings">My Listings</string>
+    <string name="Profile">Profile</string>
+    <string name="settings_section">Settings</string>
+    <string name="log_out">Logout</string>
+    <string name="home_one">Home</string>
 
 </resources>

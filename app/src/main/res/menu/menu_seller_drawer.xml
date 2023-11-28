@@ -5,26 +5,31 @@
         <!-- Seller Home -->
         <item
             android:id="@+id/nav_home"
-            android:title="Home" />
+            android:title="@string/home_one"
+            android:icon="@drawable/home_icon"/>
 
         <item
             android:id="@+id/nav_profile"
-            android:title="Profile" />
+            android:title="@string/Profile"
+            android:icon="@drawable/ic_account"/>
 
         <!-- Seller Listings -->
         <item
             android:id="@+id/nav_listings"
-            android:title="My Listings" />
+            android:title="@string/my_listings"
+            android:icon="@drawable/list"/>
 
         <!-- Seller Settings -->
         <item
             android:id="@+id/nav_settings"
-            android:title="Settings" />
+            android:title="@string/settings_section"
+            android:icon="@drawable/ic_settings"/>
 
         <!-- Seller Logout -->
         <item
             android:id="@+id/nav_logout"
-            android:title="Logout" />
+            android:title="@string/log_out"
+            android:icon="@drawable/logout"/>
     </group>
 
 </menu>

@@ -97,7 +97,7 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             R.id.nav_listings -> {
                 // Fetch properties from Firestore
                 propertyRepository.getProperties().addOnSuccessListener { querySnapshot ->
-                    val properties = querySnapshot.toObjects(Property::class.java)
+                    val properties = querySnapshot.toObjects(Propertys::class.java)
 
                     // Set up RecyclerView
                     val recyclerView: RecyclerView = findViewById(R.id.recyclerViewProperties)
@@ -116,12 +116,12 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 // Handle Logout click
                 signOut()
             }
-            R.id.nav_account -> {
-                // Handle Account click
+            R.id.nav_account, R.id.nav_profile -> {
+                // Handle Account or Profile click
                 startActivity(Intent(this, UserProfileActivity::class.java))
+
             }
             // Add more cases for other menu items as needed
-
         }
 
         // Close the drawer

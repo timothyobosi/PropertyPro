@@ -1,0 +1,58 @@
+<!-- activity_upload_property.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- ImageViews for uploading photos -->
+    <!-- You can use multiple ImageViews for different photos -->
+    <ImageView
+        android:id="@+id/photo1ImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_image"
+        android:layout_marginTop="16dp"/>
+
+    <!-- EditTexts for property details -->
+    <EditText
+        android:id="@+id/propertyNumberEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Property Number"
+        android:layout_below="@id/photo1ImageView"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/priceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Price"
+        android:layout_below="@id/propertyNumberEditText"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Add more EditTexts for other property details -->
+
+    <!-- MapView for selecting the property location -->
+    <!-- For simplicity, you can use a MapView library, e.g., Mapbox, for handling maps -->
+
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/priceEditText"
+        android:layout_marginTop="16dp"/>
+    
+    
+    <!-- Button to submit the property -->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_below="@id/mapView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>

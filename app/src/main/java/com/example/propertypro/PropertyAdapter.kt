@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.propertypro.databinding.ItemPropertyBinding
 
-class PropertyAdapter(private val properties: List<Property>) :
+class PropertyAdapter(private val properties: List<Propertys>) :
     RecyclerView.Adapter<PropertyAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemPropertyBinding) : RecyclerView.ViewHolder(binding.root)
