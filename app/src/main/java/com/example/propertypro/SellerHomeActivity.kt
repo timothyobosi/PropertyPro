@@ -8,19 +8,21 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.propertypro.databinding.ActivitySellerHomeBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivitySellerHomeBinding
-    private lateinit var drawerLayout: androidx.drawerlayout.widget.DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private val propertyRepository = PropertyRepository()
+    private lateinit var auth: FirebaseAuth // Add this line
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,9 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // Initialize binding using the generated binding class
         binding = ActivitySellerHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         // Initialize DrawerLayout and NavigationView
         drawerLayout = binding.drawerLayout
@@ -49,6 +54,38 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         // Set the navigation item selected listener
         navigationView.setNavigationItemSelectedListener(this)
+
+        // Check if user is signed in (not null), and update UI accordingly
+        val currentUser: FirebaseUser? = auth.currentUser
+        updateUI(currentUser)
+    }
+
+    // Add this function to update UI based on user authentication status
+    private fun updateUI(currentUser: FirebaseUser?) {
+        // Example: If the user is logged in, show their email in a TextView
+        if (currentUser != null) {
+            val userEmail = currentUser.email
+            // Update UI with the user's information
+        } else {
+            // If the user is not logged in, redirect them to the login screen or handle as needed
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+    }
+
+    // Add this function to handle logout
+    private fun signOut() {
+        auth.signOut()
+        updateUI(null)
+    }
+
+    // Override onBackPressed to close the drawer if it's open
+    override fun onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -77,22 +114,20 @@ class SellerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             }
             R.id.nav_logout -> {
                 // Handle Logout click
+                signOut()
             }
+            R.id.nav_account -> {
+                // Handle Account click
+                startActivity(Intent(this, UserProfileActivity::class.java))
+            }
+            // Add more cases for other menu items as needed
+
         }
 
         // Close the drawer
         drawerLayout.closeDrawer(GravityCompat.START)
 
         return true
-    }
-
-    // Override onBackPressed to close the drawer if it's open
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
     }
 
     companion object {
