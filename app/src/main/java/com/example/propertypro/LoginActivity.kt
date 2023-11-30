@@ -77,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
                             // Check if email is verified before allowing login
                             val user = firebaseAuth.currentUser
                             if (user != null && user.isEmailVerified) {
-                                val intent = Intent(this, MainActivity::class.java)
+                                val intent = Intent(this, MainActivity1::class.java)
                                 startActivity(intent)
                                 finish()
                             } else {

@@ -83,6 +83,13 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity1"
+            android:exported="true">
+            <!-- No intent-filter is needed here since it's not the MAIN activity -->
+        </activity>
+
+
         <!-- Remove duplicate entries -->
         <activity
             android:name=".BuyerPropertyListActivity"
@@ -95,6 +102,15 @@
         <activity android:name=".SellerLoginActivity" />
         <activity android:name=".BuyerLoginActivity"/>
         <!-- ... Other activities ... -->
+        <activity
+            android:name=".PropertyListBottomSheetFragment"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+
+        <activity
+            android:name=".PropertyListAdapter"
+            android:exported="true">
+            <!-- No intent-filter is needed here since it's not the MAIN activity -->
+        </activity>
 
     </application>
 

@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/explore"
     android:layout_height="match_parent"
     tools:context=".MainActivity1">
 
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/searchBar"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="45dp" />
 
     <!-- Add other layout components as needed -->
 

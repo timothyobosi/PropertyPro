@@ -25,9 +25,9 @@ class PropertyListAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_property, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_property, parent, false)
         return PropertyViewHolder(view)
+
     }
 
     override fun onBindViewHolder(holder: PropertyViewHolder, position: Int) {

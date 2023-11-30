@@ -2,6 +2,7 @@ package com.example.propertypro
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 
 class MainActivity1 : AppCompatActivity() {
 
@@ -9,8 +10,8 @@ class MainActivity1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_1) // Update layout reference here
 
-        val searchView = findViewById<android.widget.SearchView>(R.id.searchBar) // Note: Use SearchView here
-        searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener { // Correct import
+        val searchView = findViewById<SearchView>(R.id.searchView) // Use the correct SearchView import
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener { // Use the correct SearchView import
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query?.equals("explore", ignoreCase = true) == true) {
                     openPropertyListBottomSheet()
@@ -30,4 +31,5 @@ class MainActivity1 : AppCompatActivity() {
         val bottomSheetFragment = PropertyListBottomSheetFragment()
         bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
     }
+
 }
