@@ -44,7 +44,7 @@ class BuyerLoginActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Login successful, navigate to HomeActivity
-                    val intent = Intent(this@BuyerLoginActivity, HomeActivity::class.java)
+                    val intent = Intent(this@BuyerLoginActivity, MainActivity1::class.java)
                     startActivity(intent)
                     finish() // Optional: Close the login activity
                 } else {
