@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/explore"
+    android:background="@drawable/category_layout"
     android:layout_height="match_parent"
     tools:context=".MainActivity1">
 
@@ -11,8 +11,13 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="190dp" />
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/searchView"
         android:layout_marginTop="45dp" />
-
     <!-- Add other layout components as needed -->
 
 </RelativeLayout>

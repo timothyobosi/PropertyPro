@@ -1,4 +1,4 @@
-package com.example.propertypro
+import com.example.propertypro.PropertyItem
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.propertypro.R
 
 class PropertyListAdapter :
     ListAdapter<PropertyItem, PropertyListAdapter.PropertyViewHolder>(PropertyDiffCallback()) {
@@ -43,4 +44,6 @@ class PropertyDiffCallback : DiffUtil.ItemCallback<PropertyItem>() {
     override fun areContentsTheSame(oldItem: PropertyItem, newItem: PropertyItem): Boolean {
         return oldItem == newItem
     }
+
+
 }

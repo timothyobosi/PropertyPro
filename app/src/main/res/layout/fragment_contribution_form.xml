@@ -1,0 +1,62 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/category_layout"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Property Title Number -->
+        <EditText
+            android:id="@+id/editTextTitleNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Property Title Number"
+            android:inputType="text"/>
+
+        <!-- Property Title -->
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Property Title"
+            android:inputType="text"/>
+
+        <!-- Property Description -->
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Property Description"
+            android:inputType="textMultiLine"/>
+
+        <!-- Property Image Upload -->
+        <ImageView
+            android:id="@+id/imageViewProperty"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/placeholder_image"/>
+
+        <!-- Button to Choose Image -->
+        <Button
+            android:id="@+id/buttonChooseImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Image"/>
+
+        <!-- Button to Submit Contribution -->
+        <Button
+            android:id="@+id/buttonSubmitContribution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Contribution"
+            android:onClick="submitContribution"/>
+    </LinearLayout>
+</ScrollView>
