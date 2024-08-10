@@ -5,6 +5,7 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
+
 android {
     namespace = "com.example.propertypro"
     compileSdk = 34
@@ -43,6 +44,8 @@ android {
 }
 
 dependencies {
+
+    val kotlinVersion = "1.9.0"
 
     implementation("androidx.appcompat:appcompat:1.6.1")
 
@@ -148,4 +151,22 @@ dependencies {
 
     implementation("nz.co.trademe.mapme:mapme:1.2.1")
 
+    implementation("com.google.android.libraries.navigation:navigation:5.5.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+
+    val nav_version ="2.7.7"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //feature module support
+    implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
+
+    //Test navigation
+    androidTestImplementation("androidx.navigation:navigation-testing:$nav_version")
+
+    //Jetpack Compose Integration
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+
+
 }
+
